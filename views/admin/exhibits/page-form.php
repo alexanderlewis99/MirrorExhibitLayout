@@ -32,6 +32,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
                 <?php echo $this->formText('slug', $exhibit_page->slug); ?>
             </div>
         </div>
+
     </fieldset>
     <?php //Where you add your content blocks ?>
     <fieldset id="block-container">
@@ -98,7 +99,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
 </form>
 <?php //This item-select div must be outside the <form> tag for this page, b/c IE7 can't handle nested form tags. ?>
 <?php //a pop-up panel to attach items to a content block ?>
-<div id="attachment-panel" title="<?php echo html_escape(__('Attach HAI HAI an Item')); ?>">
+<div id="attachment-panel" title="<?php echo html_escape(__('Attach an Item')); ?>">
     <div id="item-form">
         <?php //this button is used when you select an item and then change the item ?>
         <button type="button" id="revert-selected-item"><?php echo __('Revert to Selected Item'); ?></button>
@@ -107,9 +108,14 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
             <span class="show-search-label"><?php echo __('Show Search Form'); ?></span>
             <span class="hide-search-label"><?php echo __('Hide Search Form'); ?></span>
         </button>
-        <?php //view all items sends you to page one of the item viewing search mode ?>
-        <a href="<?php //echo url('exhibit-builder/items/browse'); ?>" id="view-all-items" class="green button"><?php echo __('View All Items'); ?></a>
+        <?php //view all items sends you to page one of the item viewing search mode
+//IMPORTANT!!!
+//IMPORTANT!!!
+//IMPORTANT!!!
+        ?>
+        <a href="<?php echo url('exhibit-builder/items/browse'); ?>" id="view-all-items" class="green button"><?php echo __('View All Items'); ?></a>
         <?php //url is the URL the form should submit to. ?>
+
         <div id="page-search-form" class="container-twelve">
         <?php //url() creates the URL the form should submit to.
             /* first param: $options (mixed) – If a string is passed it is treated as an Omeka-relative link.
@@ -137,9 +143,10 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
             $buttonText = null;
             //Think of it as the code from the partial is put directly below as an insert
             //The array passed is a way of passing variables to the view partial
+
             echo get_view()->partial(
               'items/page-search-form.php',
-                array('formAttributes' => $props, 'formActionUri' => $formActionUri, 'buttonText' => $buttonText)
+                array('exhibit' => $exhibit, 'formAttributes' => $props, 'formActionUri' => $formActionUri, 'buttonText' => $buttonText)
             );
 //END OF CUSTOMIZATION!!
 
@@ -149,7 +156,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
     </div>
     <?php //after selecting an item, options are displayed ?>
     <div id="attachment-options">
-        <button type="button" id="change-selected-item"><?php echo __('Change HAI Selected Item'); ?></button>
+        <button type="button" id="change-selected-item"><?php echo __('Change Selected Item'); ?></button>
         <div class="options">
             <div id="attachment-item-options"></div>
             <?php //creates a text box to write a caption ?>
@@ -162,7 +169,7 @@ echo head(array('title'=> $title, 'bodyclass'=>'exhibits'));
         </div>
         <?php //An 'Apply' button to add the attachment ?>
         <div id="attachment-save">
-            <button type="submit" id="apply-attachment"><?php echo __('Apply LOL LOL'); ?></button>
+            <button type="submit" id="apply-attachment"><?php echo __('Apply'); ?></button>
         </div>
     </div>
     <div id="attachment-panel-loading"><span class="spinner"></span></div>

@@ -6,10 +6,6 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.txt GNU GPLv3
  */
 
- if (!defined('MIRROR_PLUGIN_DIR')) {
-     define('MIRROR_PLUGIN_DIR', dirname(__FILE__));
- }
-
 //extends Omeka_Plugin_AbstractPlugin because it is a plugin
 class SliderExhibitLayoutPlugin extends Omeka_Plugin_AbstractPlugin
 {
@@ -18,7 +14,6 @@ class SliderExhibitLayoutPlugin extends Omeka_Plugin_AbstractPlugin
   //To add a new layout, you must hook into this filter and add some information about your new layout.
   //You need to decide three things: ID, name, and description
     protected $_filters = array('exhibit_layouts');
-    protected $_hooks = array('define_routes');
 
     public function filterExhibitLayouts($layouts)
     {
@@ -28,20 +23,6 @@ class SliderExhibitLayoutPlugin extends Omeka_Plugin_AbstractPlugin
         );
         return $layouts;
     }
-
-    //Creating custom routes in order ot customize the pages browse form
-
-    function hookDefineRoutes($args)
-    {
-      if (is_admin_theme()) {
-            return;
-      }
-
-        $router = $args['router'];
-        $router->addConfig(new Zend_Config_Ini(MIRROR_PLUGIN_DIR .
-            DIRECTORY_SEPARATOR . 'routes.ini', 'routes'));
-    }
-
 
     public function sliderExhibitAttachment($attachment)
     {
