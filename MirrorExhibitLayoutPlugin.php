@@ -7,7 +7,7 @@
  */
 
 //extends Omeka_Plugin_AbstractPlugin because it is a plugin
-class SliderExhibitLayoutPlugin extends Omeka_Plugin_AbstractPlugin
+class MirrorExhibitLayoutPlugin extends Omeka_Plugin_AbstractPlugin
 {
   // a corresponding key in $_hooks and $_filters will be interpreted as the name of the callback method.
   //Exhibit Builder provides a filter named exhibit_layouts.
@@ -17,14 +17,14 @@ class SliderExhibitLayoutPlugin extends Omeka_Plugin_AbstractPlugin
 
     public function filterExhibitLayouts($layouts)
     {
-        $layouts['slider'] = array( //ID: 'slider'
-            'name' => 'Slider Layout', //name: 'Slider Layout'
-            'description' => 'A slider layout.' //description
+        $layouts['mirror'] = array( //ID: 'mirror'
+            'name' => 'Mirror Layout', //name: 'Mirror Layout'
+            'description' => 'A mirror layout.' //description
         );
         return $layouts;
     }
 
-    public function sliderExhibitAttachment($attachment)
+    public function mirrorExhibitAttachment($attachment)
     {
       //attachment objects: items the user has attached to this block
         $item = $attachment->getItem();
